@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="message_enter_at_least_3_signs">Please enter at least 3 signs for search</string>
+</resources>
