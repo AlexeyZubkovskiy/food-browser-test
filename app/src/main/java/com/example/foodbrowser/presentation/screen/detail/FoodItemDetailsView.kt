@@ -13,7 +13,6 @@ import com.example.foodbrowser.presentation.uicommon.DefaultLoadingState
 @Composable
 fun FoodItemDetailsView(
     modifier: Modifier = Modifier,
-    foodItemId: String,
     state: FoodItemDetailsViewModel.State,
     onCloseScreen: () -> Unit
 ) {
@@ -35,30 +34,18 @@ fun FoodItemDetailsView(
 
 @Composable
 fun FoodItemDetailsResultView(
-    modifier: Modifier,
-    item: ExtendedFoodItem,
-    onCloseScreen: () -> Unit
+    modifier: Modifier, item: ExtendedFoodItem, onCloseScreen: () -> Unit
 ) {
     AlertDialog(
         modifier = modifier,
-        title = {
-            Text(text = item.name)
-        },
-        text = {
-            Text(text = item.brand)
-        },
-        onDismissRequest = {
-            onCloseScreen()
-        },
+        title = { Text(text = item.name) },
+        text = { Text(text = item.brand) },
+        onDismissRequest = { onCloseScreen() },
         confirmButton = {
-            TextButton(
-                onClick = {
-                    onCloseScreen()
-                }
-            ) {
+            TextButton(onClick = { onCloseScreen() }) {
                 Text(text = stringResource(id = R.string.dialog_confirm))
             }
-        }
+        },
     )
 }
 
@@ -70,23 +57,13 @@ fun FoodItemDetailsErrorView(
 ) {
     AlertDialog(
         modifier = modifier,
-        title = {
-            Text(text = stringResource(id = R.string.title_dialog_error))
-        },
-        text = {
-            Text(text = error.message.orEmpty())
-        },
-        onDismissRequest = {
-            onCloseScreen()
-        },
+        title = { Text(text = stringResource(id = R.string.title_dialog_error)) },
+        text = { Text(text = error.message.orEmpty()) },
+        onDismissRequest = { onCloseScreen() },
         confirmButton = {
-            TextButton(
-                onClick = {
-                    onCloseScreen()
-                }
-            ) {
+            TextButton(onClick = { onCloseScreen() }) {
                 Text(text = stringResource(id = R.string.dialog_ok))
             }
-        }
+        },
     )
 }

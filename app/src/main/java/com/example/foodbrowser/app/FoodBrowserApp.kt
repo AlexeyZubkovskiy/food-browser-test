@@ -11,10 +11,12 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
 class FoodBrowserApp : Application() {
+
     override fun onCreate() {
         super.onCreate()
 
         startKoin {
+
             androidContext(this@FoodBrowserApp)
             modules(
                 listOf(
@@ -26,7 +28,9 @@ class FoodBrowserApp : Application() {
                     foodItemDetailsUIModule
                 )
             )
+
         }
 
     }
+
 }

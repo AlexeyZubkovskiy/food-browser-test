@@ -11,15 +11,20 @@ import com.example.foodbrowser.presentation.navigation.MainNavigation
 import com.example.foodbrowser.presentation.theme.FoodBrowserTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             FoodBrowserTheme {
                 val navController = rememberNavController()
                 Scaffold { paddingValues ->
-                   MainNavigation(navHost = navController, modifier = Modifier.padding(paddingValues))
+                    MainNavigation(
+                        navHost = navController,
+                        modifier = Modifier.padding(paddingValues)
+                    )
                 }
             }
         }
     }
+
 }

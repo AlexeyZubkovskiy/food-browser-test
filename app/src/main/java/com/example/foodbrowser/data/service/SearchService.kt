@@ -13,6 +13,6 @@ private const val QUERY_KEY = "kv"
 interface SearchService {
 
     @GET("/dev/search")
-    fun searchFoodItems(@Query(QUERY_KEY) query : String) : Single<List<FoodItemDTO>>
+    fun searchFoodItems(@Query(QUERY_KEY) query: String): Single<List<FoodItemDTO>>
 
 }

@@ -6,5 +6,9 @@ import com.example.foodbrowser.domain.fooditems.SearchSimpleFoodItemsUseCaseImpl
 import org.koin.dsl.module
 
 val searchFoodItemsDomainModule = module {
-    factory<SearchSimpleFoodItemsUseCase> {  SearchSimpleFoodItemsUseCaseImpl(foodRepository =  get<FoodRepository>()) }
+
+    factory<SearchSimpleFoodItemsUseCase> {
+        SearchSimpleFoodItemsUseCaseImpl(foodRepository = get<FoodRepository>())
+    }
+
 }

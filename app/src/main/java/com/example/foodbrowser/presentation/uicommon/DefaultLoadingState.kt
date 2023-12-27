@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun DefaultLoadingState(modifier: Modifier = Modifier) {
+
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -26,4 +27,5 @@ fun DefaultLoadingState(modifier: Modifier = Modifier) {
                 .align(Alignment.Center)
         )
     }
+
 }

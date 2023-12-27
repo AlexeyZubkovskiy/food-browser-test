@@ -88,7 +88,7 @@ fun SearchFoodItemsView(
         },
         active = true,
         onActiveChange = {},
-        tonalElevation = 0.dp
+        tonalElevation = 0.dp,
     )
 
 
@@ -129,7 +129,7 @@ fun SearchFoodItemItem(
 
 /**
  * For handling screen rotation
-* */
+ * */
 private fun selectCorrectInitialState(
     state: SearchFoodItemsViewModel.State,
     default: String = ""

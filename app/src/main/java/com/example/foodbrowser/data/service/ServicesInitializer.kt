@@ -10,11 +10,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 //for more complex project dependencies could be provided here from outside, but
 //I broke dependency inversion rule here for simplifying
 private const val BASE_URL = "https://uih0b7slze.execute-api.us-east-1.amazonaws.com/"
-class ServicesInitializer {
 
-    private val loggingInterceptor get() = HttpLoggingInterceptor().apply {
-        setLevel(HttpLoggingInterceptor.Level.BODY)
-    }
+class ServicesInitializer {
+    private val loggingInterceptor
+        get() = HttpLoggingInterceptor().apply {
+            setLevel(HttpLoggingInterceptor.Level.BODY)
+        }
 
     private val client get() = OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
 
@@ -33,5 +34,6 @@ class ServicesInitializer {
             .build()
     }
 
-    fun <T> init(serviceClass: Class<T>): T  = retrofit.create(serviceClass)
+    fun <T> init(serviceClass: Class<T>): T = retrofit.create(serviceClass)
+
 }

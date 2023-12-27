@@ -5,7 +5,8 @@ import com.example.foodbrowser.data.repo.FoodRepository
 import com.example.foodbrowser.domain.entity.ExtendedFoodItem
 import io.reactivex.Single
 
-internal class GetFoodItemDetailsUseCaseImpl(private val foodRepository: FoodRepository) : GetFoodItemDetailsUseCase {
+internal class GetFoodItemDetailsUseCaseImpl(private val foodRepository: FoodRepository) :
+    GetFoodItemDetailsUseCase {
     override fun getFoodItemDetails(id: String): Single<ExtendedFoodItem> =
         foodRepository.getFoodItem(id)
             .map { it.toExtendedFoodItem() }
@@ -13,9 +14,9 @@ internal class GetFoodItemDetailsUseCaseImpl(private val foodRepository: FoodRep
 }
 
 private fun FoodItemDTO.toExtendedFoodItem() = ExtendedFoodItem(
-    id= this.id,
+    id = this.id,
     name = this.name,
-    brand  = this.brand,
+    brand = this.brand,
     calories = this.calories,
     portionInGrams = this.portionInGrams
 )

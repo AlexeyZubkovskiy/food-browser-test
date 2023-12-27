@@ -29,10 +29,10 @@ internal class SearchSimpleFoodItemsUseCaseImpl(
                     }
                 }
         }
+
 }
 
-private fun FoodItemDTO.toSimpleFoodItem(): SimpleFoodItem =
-    SimpleFoodItem(id = this.id, name = this.name)
+private fun FoodItemDTO.toSimpleFoodItem(): SimpleFoodItem = SimpleFoodItem(id = this.id, name = this.name)
 
 private fun SimpleFoodItem.sortField(sortedBy: SearchSimpleFoodItemsUseCase.SortedBy): String =
     when (sortedBy) {

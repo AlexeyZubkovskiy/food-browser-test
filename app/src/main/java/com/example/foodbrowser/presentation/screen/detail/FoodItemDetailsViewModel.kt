@@ -6,17 +6,17 @@ import androidx.lifecycle.ViewModel
 import com.example.foodbrowser.app.SchedulersProvider
 import com.example.foodbrowser.domain.entity.ExtendedFoodItem
 import com.example.foodbrowser.domain.fooditemdetails.GetFoodItemDetailsUseCase
-import com.example.foodbrowser.utils.rx.disposeAllAndClear
-import io.reactivex.disposables.Disposable
+import com.example.foodbrowser.utils.rx.plus
+import io.reactivex.disposables.CompositeDisposable
 
 class FoodItemDetailsViewModel(
+    private val itemId: String,
     private val schedulersProvider: SchedulersProvider,
     private val foodItemDetailsUseCase: GetFoodItemDetailsUseCase
 ) : ViewModel() {
 
     //All stuff related to the State and disposables should be generic and stored in BaseViewModel
     //I broke DRY principle in this project just for saving time
-    //
     sealed class State {
         data object Loading : State()
 
@@ -29,24 +29,24 @@ class FoodItemDetailsViewModel(
 
     private val _state: MutableLiveData<State> = MutableLiveData(State.Loading)
 
-    private val disposables: MutableList<Disposable> = mutableListOf()
+    private val disposables: CompositeDisposable = CompositeDisposable()
 
-    fun loadFoodDetailsInfo(id: String) {
-        disposables + foodItemDetailsUseCase.getFoodItemDetails(id)
+    init {
+        loadFoodDetailsInfo()
+    }
+
+    private fun loadFoodDetailsInfo() {
+        disposables + foodItemDetailsUseCase.getFoodItemDetails(itemId)
             .observeOn(schedulersProvider.main)
             .subscribe(
-                { foodItem ->
-                    _state.value = State.Result(foodItem)
-                },
-                { error ->
-                    _state.value = State.Error(error)
-                }
+                { foodItem -> _state.value = State.Result(foodItem) },
+                { error -> _state.value = State.Error(error) }
             )
     }
 
     override fun onCleared() {
         super.onCleared()
-        disposables.disposeAllAndClear()
+        disposables.dispose()
     }
 
 }
